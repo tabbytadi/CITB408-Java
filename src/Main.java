@@ -1,49 +1,42 @@
-import week04.repository.Document;
-import week04.repository.FormatType;
-import week04.repository.Repository;
-
-import javax.crypto.spec.PSource;
+import week04.university.Course;
+import week04.university.CourseType;
+import week04.university.Program;
+import week04.university.ProgramType;
 
 public class Main {
     public static void main(String[] args) {
 
-        Document document1 = new Document("doc1", 5, FormatType.PDF);
-        Document document2 = new Document("doc2", 10, FormatType.JPG);
-        Document document3 = new Document("doc3", 10, FormatType.PDF);
-        Document document4 = new Document("doc4", 5, FormatType.TXT);
+        Course course1 = new Course("Java", 6, CourseType.REQUIRED);
+        Course course2 = new Course("C++", 6, CourseType.EELECTIVE);
+        Course course3 = new Course("Python", 3, CourseType.REQUIRED);
+        Course course4 = new Course("JavaScript", 3, CourseType.EELECTIVE);
 
-        System.out.println(FormatType.TXT.getMaxSize());
-        System.out.println(FormatType.PDF.getMaxSize());
+        System.out.println(course1);
+        System.out.println(course2);
+        System.out.println(course3);
+        System.out.println(course4);
+
+        Program program = new Program("Computer Science", ProgramType.MAJOR);
+        System.out.println(program);
+
+        program.addCourse(course1);
+        program.addCourse(course1);
+        program.addCourse(course2);
         System.out.println("=======================");
+        System.out.println(program);
+        program.printCourseList();
 
-        System.out.println(document1);
-        System.out.println(document2);
-        System.out.println(document3);
-        System.out.println(document4);
+        System.out.println(program.getCourseListSize());
 
-        Repository repository = new Repository(30);
-        System.out.println(repository);
-
-        repository.addDocument(document1);
-        repository.addDocument(document1);
-        repository.addDocument(document2);
-
-        //repository.printDocumentsList();
-        System.out.println("=======================");
-
-        repository.addDocument(document3, 0);
-        repository.addDocument(document4, 1);
-        System.out.println("Size: " + repository.documentListSize());
-        //repository.printDocumentsArray();
-
-        System.out.println("Removed " + repository.removeDocument(1));
-        repository.printDocumentsList();
-
-        repository.addDocument(document1);
-        repository.addDocument(document2);
-        repository.addDocument(document3);
-        repository.addDocument(document4);
-        System.out.println("=======================");
-        repository.printDocumentByFormatType(FormatType.JPG);
+//        System.out.println("=======================");
+//        program.printCourseListByCourseType(CourseType.REQUIRED);
+//
+//        System.out.println(" ");
+//        System.out.println("=======================");
+//        System.out.println(program.removeCourse(1));
+//        program.printCourseListByCourseType(CourseType.REQUIRED);
+//
+//        ProgramType.MAJOR.setProgramTypeCredits(260);
+//        System.out.println("Credits needed: " + program.getProgramType().getProgramTypeCredits());
     }
 }
